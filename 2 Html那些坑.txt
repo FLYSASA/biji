@@ -1,0 +1,14 @@
+详解href="#"与href="javascript:void(0)"的区别
+
+"＃"包含了一个位置信息
+默认的锚点是＃top 也就是网页的上端
+而javascript:void(0) 仅仅表示一个死链接
+这就是为什么有的时候页面很长浏览链接明明是＃可是跳动到了页首
+而javascript:void(0) 则不是如此
+所以调用脚本的时候最好用void(0)
+
+
+2.如何嵌入pdf下载链接?
+<a class="btn" href="../../static/resume.pdf" download="" >下载 PDF 简历</a>
+
+href为对应的地址

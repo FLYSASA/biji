@@ -1,0 +1,6 @@
+1.出血边
+楼主可以试一试pitstop、Quite Imposing Plus、prinect PDFToolbox都可以得到你的要求！！ 
+
+
+2. 如果想给pdf四周拓展白边
+使用拓展工具 qi plus > 裁切与位移 > 将每一条边扩展1.5cm即可

@@ -1,0 +1,41 @@
+1.如果在远程clone一个项目在本地(创建一个文件夹放置clone文件),修改之后想push到自己远程仓库
+①命令行进入文件夹  git clone url  //clone项目
+②git add .                        //添加至待上传全部文件, 如果想添加某个特定的文件，只需把.换成特定的文件名即可
+③git remote remove origin         //切断远程,取消本地目录下关联的远程库
+④在github官网新建一个仓库,复制ssh
+⑤git remote add origin git@github.com:git_username/repository_name.git  //将本地目录关联远程仓库
+⑥
+git add .
+git commit -am add
+git push -u origin master -f   //-u选项会指定一个默认主机,-f强制勾选覆盖已有分支,因为新的仓库的readme文件与本地冲突,无法上传,需要强制覆盖
+
+
+git remote //管理主机名,会列出远程库的名字
+git remote -v //会显示详细的url地址名字
+
+
+2.git 不允许上传一个空文件夹
+
+3.不git上传某些文件
+可以在主目录下新建.gitignore文件
+内容:
+node_modules 或者  **/node_modules/
+
+对于已经提交到repo的代码，可以用如下命令进行移除：git rm -r -f --cached **/node_modules/
+
+4. push之后如果想撤销上一次的commit使用指令:
+-1. git reset --hard HEAD~1     //第一步可以直接取消上一次commit ,如果加上 --heard则不保留当前更改,同时本地修改也无效,直接回退到commit的时候.
+-2. git push --force
+
+使用 git reset --soft HEAD~1  //在保证修改的基础上撤销一次commit. --hard会把修改也删除掉,--soft不会修改本地.
+
+<如果commit还未git push,也可以用 git reset --soft HEAD~1>
+
+5. 在github上预览vuecli构造的项目:
+- npm run build    //生成dist文件
+- 找到config/index.js 中的 assetsPubulicPath 改为 assetPubulickPath: ''.即可
+- 重新 npm run build
+- 重新上传至 github,根据dist目录,生成预览链接,不要加上dist/index.html否则无法显示页面.
+如下: 
+`http://flysasa.top/Vue-demo/dist/`
+

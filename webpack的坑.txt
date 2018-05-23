@@ -1,0 +1,5 @@
+1. 缺失某个josn文件,或者无法查看webpack -v版本
+执行 npm install webpack   //重装
+
+2. 如果打包失败 出现各种奇怪问题, 如:loaderutils.getoptions is not a function
+重装webpack

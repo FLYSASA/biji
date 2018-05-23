@@ -1,0 +1,175 @@
+1. 线上引入:<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+2. $event 是特殊的变量
+使用场景: 
+当子组件中 this.$emit('f1','我是参数')   //触发主组件f1函数,并传递参数给f1
+
+父组件:   @f1="f2($event)"    //$event不需要声明,它是一个特殊变量,如果子组件有参数传进来,必须使用$event作为回调函数的固定参数
+
+
+3. vue-cli 项目完成后
+运行npm run build,生成dist文件,并在.gitignore里删掉 /dist/(vue默认不上传dist),然后上传至github.
+
+
+找到config/index.js中的 assetsPubulicPath 改为: assetsPubulicPath: ''
+
+然后运行 npm run dist
+
+就会生成一个dist目录,dist文件夹里面的index.html即可以在github上预览的页面(不过必须是 http 协议)
+
+记得重新gitpush 一次文件
+
+跟往常的githubpages的预览链接不一样的是, 链接地址到 dist/即可.
+
+
+4. vue-cli脚手架搭建流程
+- 新建仓库
+- 命令行进入目录文件,clone仓库
+- npm install --save vue-cli
+- vue init webpack .
+- 下载normalize.css  npm install normalize.css --save
+- 在assets下新建reset.css
+- npm install node-sass sass-loader (注意书写scss时记得在style标签内加上lang="scss")
+- 引入外部css (main.js中也就是新建Vue实例的文件)
+import 'normalize.css/normalize.css'
+import './assets/reset.css'
+- 部署App.vue
+
+
+5. 引入eleme组件流程: http://element.eleme.io/#/zh-CN/component/quickstart
+- 安装 npm i element-ui -s
+- main.js 引入
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI)
+
+6. vue中引入pdf文件及下载链接: 要将pdf文件放在static文件夹里面
+<a class="btn" href="../../static/resume.pdf" download="" >下载链接</a>
+
+7. 在js中 短横线命名的话必须要加引号,否则报错
+
+如: <use :xlink:href="`#icon-${item.icon}`"></use>   存在短横线就必须加引号
+
+
+8. 史诗级吐血bug 绝对不要再vue中的html内联本地文件夹中关于img url的样式:如
+<div class="card-link background1" :style="styleObject"></div>
+
+styleObject : { background: 'url() center center no-repeat' }
+
+因为vue会将static里图片路径转换,如果内联的话vue无法转换路径!!! 所以根本获取不到,所以实在要内联的话使用线上url吧.
+
+9. vue给某个元素绑定class,需要判断其真值,如:  class=一个对象
+<li :class="{active: true}"></li>
+
+10.给某个元素绑定滚动事件: 需加上.native
+<child @scroll.native="scrollHandler"></child>
+
+methods: {
+scrollHandler (el) {
+    console.log(el)
+}
+}
+
+11. 注意outerHeight等式jquery的方法
+
+12. 如何引入jQuery:
+https://blog.csdn.net/github_37533433/article/details/78936750
+
+13.vue 的点击事件怎么获取当前点击的元素
+首先 vue的点击事件 是用  @click = “clickfun()” 属性 在html中绑定的
+在点击的函数中 添加$event 参数就可以
+
+比如: 
+<button  @click = “clickfun($event)”>点击</button>
+methods: {
+    clickfun(e) {
+       // e.target 是你当前点击的元素
+       // e.currentTarget 是你绑定事件的元素
+    }
+}
+
+14. 一般将图片放置在assets里,然后css url引入
+### 解决本地css url图片显示正常,放在githubpage无法显示的bug: 
+
+步骤: 
+
+1. 在 `config/index.js` 中修改 `assetsPublicPath` 为 `./`
+2. 在 `build/utils.js` 中的 `ExtractTextPlugin.extract` 传入参数 `publicPath: '../../'
+
+完美解决本地和服务器上资源url解析的问题
+
+
+参考: https://my.oschina.net/u/1778998/blog/1609856
+
+15. v-for遍历的时候,如果内部有点击事件,可以将item传入该事件作为参数,如: 
+
+<div v-if="(resume[item.field] instanceof Array)">   <!-- 是Array的实例 -->
+                  <div class="subitem" v-for="(subitem,i) in resume[item.field]"> 
+                      <div class="resumeField" v-for="(value,key) in subitem" >  
+                          <label> {{key}} </label>
+                          <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`,$event.target.value)"> 
+                      </div>
+                      <el-button  v-on:click="delExp(item)" class="delete-btn" type="primary" icon="el-icon-delete" ></el-button>
+                      <hr>
+                  </div>
+                  <el-button class="add-btn" v-on:click="addExp(item)" type="primary" >添加</el-button>
+</div>
+
+如上面的v-on:click="delExp(item)"  将item作为参数,item是其最近的父容器里的 resume[item.field]里的item
+
+
+15. 如果想在页面中嵌入pdf下载: 
+    <div class="mypdf">
+        <a class="btn" href="./static/resume.pdf" download="" >下载 PDF 简历</a>
+    </div>
+
+链接地址记得是相对dist文件夹的
+
+
+16. vue-cli脚手架搭建后,js优先执行main.js,在main.js中优先引入了App.vue主组件
+以vue为后缀名的文件都是单文件组件,他有典型的几个特征:
+①包含三个根标签,<template> <script> <style>,三者分别用来表示内容,行为和样式
+②<template>里只能有一个儿子标签
+③<script>里面必须包含 export default {},也就是说必须默认导出一个对象
+④<style>默认只支持css,如果要支持scss,需要安装 node-sass,sass-loader
+⑤export default {}中的data属性必须是函数返回值如:
+data(){
+  return {
+      xxx: yyy
+  }
+}
+
+17. 如果用vue-cli搭建项目,@一般在build/webpack.base.config.js中 alias里配置,一般指代src文件路径
+
+
+18. 是不是在webpack编译 vue的时候  报错了？  其实这个问题很简单   
+
+[html] view plain copy
+cnpm install --global vue-cli  
+cnpm install vue  
+cnpm install vue-loader vue-template-compiler loader-utils  
+
+直接从淘宝更新下这几个吧  别 用npm 用 cnpm
+
+
+19. 
+path.resolve（）方法将一系列路径或路径段解析为绝对路径。
+
+语法：
+
+path.resolve([from ...], to)
+
+说明：将参数 to 位置的字符解析到一个绝对路径里。
+
+参数说明
+
+from 源路径
+to 将被解析到绝对路径的字符串
+
+示例:
+var path = require('path')
+
+var favicon = path.resolve(__dirname, '../static/images/home/favicon.ico')   //__dirname变量,在任何模块文件内部，可以使用__dirname变量获取当前模块文件所在目录的完整绝对路径。
+
+

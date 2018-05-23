@@ -1,0 +1,7 @@
+1.安装完记得重启
+实在不行重新再git上下载npm
+下载命令:
+git clone --recursive git://github.com/isaacs/npm.git
+
+
+2.node.js内置require(输入) 和 module.exports(输出) 模块,但浏览器没有这个模块.

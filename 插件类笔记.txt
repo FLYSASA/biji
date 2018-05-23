@@ -1,0 +1,12 @@
+1. DevDocs  //win上的api查看器
+安装步骤:  参考
+1. 打开网站 http://devdocs.io/offline
+2. 右键添加至桌面,使用窗口打开
+3. 下载listary
+4. 连按两次ctrl,搜索dev即可
+
+
+使用: 
+如果想在某个特定类里搜索api:
+如: javascript
+输入javascript然后按下tab,再搜索即可

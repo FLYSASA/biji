@@ -1,0 +1,9 @@
+插件安装:
+ctrl+shift+p或者面板preferences最下面那个,呼出package control(管理插件),前提需要安装这个插件管理,接着输入Package Control: install,等几秒在弹出框里输出想要的插件.
+
+
+比较常用的有emmet,代码补全
+如新建一个格式为html文件右下角可以改格式.然后!+tab可以快速生成html5头部
+
+
+ctrl alt shift r 用浏览器打开页面

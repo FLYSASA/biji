@@ -1,0 +1,12 @@
+1.打开git bash，cd ~。然后分别创建.vimrc配置文件和.vim文件夹。.vimrc用来配置vim，插件安装到.vim目录下，和在linux下一样。
+2.pwd查看路径
+3.通过路径把插件复制解压
+
+如html:5插件
+使用说明:https://zfanw.com/blog/zencoding-vim-tutorial-chinese.html
+4.vim /etc/vimrc 修改默认项
+5.【Vim】使用Vundle管理配置Vim基本插件:
+http://www.jianshu.com/p/0e85e7c9e543
+http://os.51cto.com/art/201507/484174.htm
+6.NERDTree 快捷键辑录
+http://yang3wei.github.io/blog/2013/01/29/nerdtree-kuai-jie-jian-ji-lu/

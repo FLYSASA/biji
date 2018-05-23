@@ -1,0 +1,131 @@
+1.background{
+ url(../images/1.png) no-repeat     
+} 
+当设置背景没有设置位置时，位置默认0% 0%。
+
+2.outline : 1px solid red;   外边框为1红,不会占宽度
+
+3.div高度由内部普通文档流高度总和决定的
+
+4.脱离文档流:
+position:absolute/fixed
+float:left
+
+无法脱离文档流:
+position:relative;
+
+5.毕设当时发现一个问题，当手机点击播放键的时候发现无法使用，后来看到是因为被detail歌词的div挡住了，后来为了让detail又占据空间(方便子代定位)，又无法点击就用了visibility: hidden;属性。 这里又要引申出display:none;和visibility:hidden;的区别.
+
+
+display:none; 占据的空间不再存在,也无法点击,完全抹杀,但是具有株连性,子代也隐藏且无论怎么挣扎设置都无法显示
+
+visibility: hidden; 占据的空间依旧存在,但无法点击.子代设置visibility: visible;可显示出来.不具有株连性.
+
+
+6.关于盒子绝对居中的几种方法:
+
+①定位  前提盒子的宽高已知 父级position:relative;
+
+position: absolute;
+left: 50%;
+top: 50%;
+margin-left: 负自身宽度的一半 
+margin-top: 负自身宽度的一半
+
+②table-cell布局 
+父级
+display:table-cell;
+vertical-align: middle;  //竖直方向上居中
+子级
+margin: 0 auto;
+
+③定位 + transform ; 盒子宽高不定时 (常用)
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+
+④flex布局
+父级:
+display:flex;
+align-items: center; //实现垂直居中
+justify-content: center;  //实现水平居中
+
+⑤单纯水平方向上的居中
+margin-left: 50%;
+transform: translateX(-50%);  //水平方向左移自身一半
+
+
+7.
+使用static 定位或无position定位的元素z-index属性是无效的
+
+8.
+position:relative就是相对定位，它相对于原有位置移动，但是，他移动了以后，他的以前的位置的空依然存在；
+
+9.
+transition: width .8s;   //动画.8s完成
+
+10.
+position: fixed;          //相对窗口定位,无法根据其他元素移动
+right: 2vh;
+top: 2vh;
+
+
+11.
+css3 animation 动画效果
+要使用动画效果,使用@keyframes规则,需要首先在css中定义好需要的动画,如360度循环旋转,如:
+@keyframes xuanzhuan {             //@keyframes动画是旋转的,而transform只执行一遍
+  0% {                            //0%是事件百分比,百分比后面的花括号写：在动画执行过程中的某时间点要完成的变化。
+      transform: rotate(0deg);    //rotate(0deg)  旋转0度.
+ }
+  50% {
+      transform: rotate(180deg);
+ }
+  100% {
+      transform: rotate(360deg);    
+ }
+}
+
+然后在js中设置(也可以直接在css中设置):
+$('figure').css('animation','xuanzhuan 5s linear infinite')  /*linear是线性变化 infinite是永久循环 */
+
+
+12.
+
+.css('width', this.audio.currentTime/this.audio.duration*100+'%')   //.css()里面的属性是单引号包含,没有大括号,中间是逗号隔开.这里记得乘以100并加上百分号
+
+
+_this.$ul.animate({                         
+          left: '+='+itemWidth*rowCount                              //.animate()里面首先是一个大括号包含,属性没有单引号,中间冒号隔开
+        },400,function(){
+          _this.isToEnd = false                    
+          _this.isAnimate = false                    
+          if(parseFloat(_this.$ul.css('left')) >= 0){
+            _this.isToStart = true                     
+          }
+        })
+
+
+13.页面布局,pc端完美布局
+设置媒体查询不同宽度,section写死不同宽度
+section写死宽度,给个固定宽度
+
+文字类被父容器包裹,父容器也写死宽度,内部子元素的父元素全部写死宽度.
+
+然后针对手机再写一套媒体查询
+
+
+14. 关于flex布局
+父容器设置: display: flex;
+子容器1 设置: width: 35%;
+子容器2 设置: flex: 1;   
+
+子容器会自动撑满剩余的宽度.但是flex 子容器2宽度改变时,默认会压扁子容器1.
+解决办法: 
+方法1. 子容器1 设置: min-width: 35%;
+方法2. 子容器1 设置: felx-shrink: 0 ; //不压缩
+
+
+15. 给table加横向滚动条,需要在外面包一层wrap,然后给wrap: width: 100%; overflow-x: auto;
+
+16. table 的tr要加display: block;才能设置margin

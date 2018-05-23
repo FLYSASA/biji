@@ -1,0 +1,61 @@
+1. 看一个字符串中是否有另一个字符串:
+`str1.indexOf('str2') >= 0`  //str1中str2的个数是否大于1,index从0开始计数.
+
+
+2. ES6语法:
+
+关于``反撇号代表字符串,
+${}代表 变量的占位符,里面是变量
+
+两者连用:
+
+var a = 1;console.log(`一共有${a}个鸡蛋`)         //z只需要将变量用占位符包裹,然后一起用反撇号包裹即可.
+
+ES5:
+
+var a = 1;console.log('一共有' +a+ '个鸡蛋!')    //a是变量,变量与字符串相加
+
+
+
+上面的`一共有${a}个鸡蛋` 就是模板字符串.
+
+
+MDN: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/template_strings
+参考:https://www.jianshu.com/p/8b263a6bde4d
+
+模板字符串中的占位符表达式和其它文本 会一起传递个一个默认函数作为参数. 如果模板字符串是个表达式(会计算后输出)如:
+var a = 5
+var b = 10
+console.log(`fifteen is ${a+b}`)  // "Fifteen is 15"
+
+
+3.
+Object.assign(state.user,payload)   //Obeject.assign()将第二个参数的属性和值复制到第一个参数对象上
+
+4.获取各种高度:
+//jQuery获取高度
+            var scrollTop = $(window).scrollTop()  //滚动的高度
+            var bannerHeight = $('#header').outerHeight()  
+            var skillHeight = $('#skill').outerHeight()
+            var projectHeight = $('#project').outerHeight()
+            var myblogHeight = $('#myblog').outerHeight()
+            
+//原生js获取高度
+            //var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop   //记得没有括号
+            //var offsetSkill = document.querySelector('#sskill').offsetTop
+            //var windowHeight = window.height  //视窗高
+
+
+5. 数组(arr1)中的属性拿出来?然后将属性赋予空值创造新的对象?最后新的对象重新添加到数组里
+①获取所有属性集合
+var keys = Object.keys(arr1[0])  //因为数组每一项的属性一样所以只需要第1项的属性即可,此时得到一个数组(里面都是属性)
+②新建一个空对象
+const empty = {}
+keys.map((key)=>{          //遍历key数组,将属性和空值都填入空对象
+  empty[key] = ''  
+})
+③原数组添加新对象
+arr1.push(empty)
+
+
+6. <input type="button" id="btn" value="点击" onclick="action()" />     //内联点击事件 使用onclick, 记得action后面的()

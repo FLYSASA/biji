@@ -1,0 +1,5 @@
+好的插件: 
+1. Octotree                           //github code目录树状查看
+2. Fatkun Batch Download Image        //自动下载网页高清图片,如500px
+3. firshot                            //截图工具
+4. livereload                         //配合anywhere使用,在文件目录输入livereload即可,监听css自动刷新页面

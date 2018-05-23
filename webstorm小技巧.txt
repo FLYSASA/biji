@@ -1,0 +1,7 @@
+1.右键可以分屏操作
+2.ctrl + 左键单击可以查看标签对应的css
+3.ctrl + alt + l 格式化代码
+4.ctrl + 加号 折叠代码
+5.shift + enter 另起一行
+6批量修改class 类文件,按ctrl + r 文件内替换
+7.格式化代码 ctrl + alt + l       让代码对齐

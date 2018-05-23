@@ -1,0 +1,4 @@
+比如在谷歌上
+搜索setTimeout的用法,
+搜索关键字 mdn setTimeout
+不会看英文的话右上角有语言设置

@@ -1,0 +1,13 @@
+1.遍历数组
+var arr = ['关羽','张飞','赵云','马超','黄忠'];//定义数组
+//遍历数组
+for(var i = 0;i<arr.length;i++){
+    console.log(arr[i]);
+}
+
+2.遍历对象
+var obj = {'name':'webbc','age':22,'area':'淮南'};//定义对象
+//遍历对象元素
+for(var k in obj){
+    console.log(k+':'+obj[k]);//注意这里应该使用obj[k]这种方式来遍历属性，如果使用obj.k，就会认为obj对象中有一个k属性
+}

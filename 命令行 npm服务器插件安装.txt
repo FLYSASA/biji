@@ -1,0 +1,54 @@
+1.npm install -g browser-sync  安装browser-sync是插件名字
+这个插件作用:可以启动一个静态服务器,通过localhost方式打开页面
+使用教程:http://www.browsersync.cn/#install
+
+browser-sync start --server --files "css/*.css" 监听某个文件
+browser-sync start --server --files "**/*"  当前目录下已经后面目录的所有文件
+
+
+2.npm install -g anywhere  全局安装anywhere
+用来跑各个文件
+命令行: anywhere 启动后台
+当想释放shell,即既使用命令行,又使用服务器,使用指令 anywhere &,可jobs查看启用的服务器
+同时可以把http://192.168.0.107:8000/发到手机上可以访问
+如果要关闭:
+①如果bash还没关闭,可以jobs -l查看当前运行的任务进程和编号
+然后
+fg 将进程转为前台
+然后 Ctrl + c即可
+
+②另外如果不小心将后台进程挂着的时候关闭,可以
+ps | grep node
+然后
+kill <id>
+
+
+3.anywhere配合livereload实现页面实时更新
+1.npm install -g anywhere livereload
+2.在谷歌添加扩展程序 
+https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
+3.另起终端运行livereload
+4.在chrome中激活livereload,即变成小黑点即可
+
+
+
+4. 我们需要找到这一项在数组数据中的位置,需要给input绑定函数,而且要传入两个参数,一个是改变的value的位置,一个是value值.
+
+获取到value值需要一个插件**object-path**  参考: https://www.npmjs.com/package/object-path
+它的作用是**使用路径访问深层属性**  就比如这里的`${item.field}.${i}.${key}` 深层的key.
+
+如何使用**object-path**?  
+ 1. 下载
+ `npm install object-path --save`
+ 2. 在需要path的地方引入,如这里的 store里的index.js
+```js
+import objectPath from 'object-path'
+
+mutations:{
+  updataResume(state,{path,value}){
+    objectPath.set(state.resume,path,value)   //使用objectPath对象的set方法将第一个参数设置属性为path,值为value,path是个字符串
+  }
+}
+```
+3. objectPath.set(a,path,value)   //将a的path属性值设为value
+
