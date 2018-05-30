@@ -74,3 +74,6 @@ vetur.configuration 把  "vetur.validation.template": true  改成
 "vetur.validation.template": false
  
 保存，我们再看一下vue文件，发现不报错了。
+
+
+12. ctrl + shift +[ 折叠选中的代码

@@ -39,3 +39,8 @@ node_modules 或者  **/node_modules/
 如下: 
 `http://flysasa.top/Vue-demo/dist/`
 
+6. 使用vueli构建项目,端口被占用解决:
+打开命令行:
+输入: netstat -ano    //查看所有端口信息
+
+输入: tskill PID (最后一列数字) 杀死进程即可
