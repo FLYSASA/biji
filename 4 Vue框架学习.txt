@@ -172,4 +172,28 @@ var path = require('path')
 
 var favicon = path.resolve(__dirname, '../static/images/home/favicon.ico')   //__dirname变量,在任何模块文件内部，可以使用__dirname变量获取当前模块文件所在目录的完整绝对路径。
 
+20. Class与 Style绑定
 
+
+绑定HTML Class: 
+
+# 对象语法
+我们可以传给  v-bind: class  一个对象,以动态地切换class
+
+<div   v-bind:class="{active: isActive}"></div>
+
+这个class="active"属性存在与否,取决于isActive的 布尔值.
+
+
+可以在对象中传入更多属性 来动态切换多个class,如:
+<div  class="static"   :class=" {active: isActive, 'text-danger'  : hasEroor} ">
+对象中多个属性, 注意短横线属性需要加上单引号.
+
+有如下data:
+data:  {
+    isActive: true,
+   hasError: false
+}
+
+结果渲染为:
+<div class="static active">
